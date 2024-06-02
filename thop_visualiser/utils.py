@@ -62,3 +62,6 @@ def get_proper_fig_size(n_cities):
 def rgbtohex(rgb_color):
     r, g, b = [int(256 * x) for x in rgb_color]
     return f'#{r:02x}{g:02x}{b:02x}'
+
+def extract_file_name(file_path):
+    return file_path.split('/')[-1]
