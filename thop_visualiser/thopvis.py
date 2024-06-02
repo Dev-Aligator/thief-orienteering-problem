@@ -1,12 +1,15 @@
 import os
 from tkinter import *
 from tkinter import filedialog
+from tkinter.tix import *
 from PIL import ImageTk, Image
 from construct_map import construct_map, CITIES_COLOR
 from run_acoplusplus import run_acoplusplus
 from tkinter import ttk
 from tkscrolledframe import ScrolledFrame
 from utils import load_items_in_cities_data, rgbtohex, get_instance_info
+
+import warnings ; warnings.warn = lambda *args,**kwargs: None
 # Initialize the main Tkinter window
 root = Tk()
 
@@ -15,7 +18,7 @@ root.title("ThOP Visualiser")
 BACKGROUND_COLOR = "skyblue"
 root.config(bg=BACKGROUND_COLOR)
 root.geometry("1920x1080")
-
+tool_tip = Balloon(root, initwait=100, bg="white")
 thop_file_path = None  # Global variable to store the selected ThOP file path
 thief_packing_plan = None
 
@@ -90,7 +93,7 @@ def run_test_instance():
             city_bg_color = rgbtohex(CITIES_COLOR[city])
             row_bg_color = "white" if index % 2 == 0 else "lightgrey"
 
-            items_in_city = [str(item['index']) for item in items_in_cur_city]
+            # items_in_city = [str(item['index']) for item in items_in_cur_city]
             new_city_items_frame = Frame(packing_plan_bar, height=100, bg=row_bg_color)
             new_city_items_frame.pack(padx=5, pady=0, expand=False, fill="x", side=TOP)
 
@@ -104,9 +107,11 @@ def run_test_instance():
 
 
             new_packing_plan_label = Label(new_city_items_frame, text="", width=400, anchor="w", wraplength=200, bg=row_bg_color)
-            for item in items_in_city:
-                new_item_label = Label(new_packing_plan_label, text=str(item), anchor="center", width=4, wraplength=200, bg="#b8b816")
+            for item in items_in_cur_city:
+                new_item_label = Label(new_packing_plan_label, text=str(item['index']), anchor="center", width=4, wraplength=200, bg="#b8b816")
                 new_item_label.pack(side=LEFT, padx=5)
+
+                tool_tip.bind_widget(new_item_label, balloonmsg="Profit: {}\n Weight: {}".format(item['profit'], item['weight']))
             new_packing_plan_label.pack(side=LEFT, padx=0, pady=5, fill="x", expand=True)
 
 # Create a toolbar in the top left frame
