@@ -24,7 +24,7 @@ left_frame = Frame(root, width=340, bg=BACKGROUND_COLOR)
 left_frame.pack(side=LEFT, padx=10, pady=5, fill=Y)
 
 right_frame = Frame(root, width=1580, bg='grey')
-right_frame.pack(side=LEFT, padx=10, pady=5, fill=BOTH, expand=True)
+right_frame.pack(side=LEFT, padx=5, pady=5)
 
 top_left_frame = Frame(left_frame, width=340, bg='grey')
 top_left_frame.pack(padx=5, pady=20, fill=X)
