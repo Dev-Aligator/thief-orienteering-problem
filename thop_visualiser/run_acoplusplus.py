@@ -5,4 +5,7 @@ def run_acoplusplus(thop_input_file):
     with open("output.txt", "r") as file:
         thief_route_solution = file.readline()
         thief_route_solution = ast.literal_eval(thief_route_solution)
-    return thief_route_solution
+
+        thief_packing_plan = file.readline()
+        thief_packing_plan = ast.literal_eval(thief_packing_plan)
+    return thief_route_solution, thief_packing_plan
