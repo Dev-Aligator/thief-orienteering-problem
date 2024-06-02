@@ -48,7 +48,9 @@ def construct_map(thop_input_file_path, output_file, thief_route_solution=None, 
     resized_image= image.resize((1500, 1000), Image.LANCZOS)
     new_image= ImageTk.PhotoImage(resized_image)
     
-    if len(x) > 100:
+    os.system('pkill feh')
+
+    if len(x) > 100 and show_solution:
         os.system('feh ' + output_file + ' &')
     return new_image
 

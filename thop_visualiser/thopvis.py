@@ -6,7 +6,7 @@ from construct_map import construct_map, CITIES_COLOR
 from run_acoplusplus import run_acoplusplus
 from tkinter import ttk
 from tkscrolledframe import ScrolledFrame
-from utils import load_items_in_cities_data, rgbtohex
+from utils import load_items_in_cities_data, rgbtohex, get_instance_info
 # Initialize the main Tkinter window
 root = Tk()
 
@@ -45,6 +45,11 @@ new_image = ImageTk.PhotoImage(resized_image)
 main_label = Label(right_frame, image=new_image)
 main_label.pack(padx=5, pady=5)
 
+log_bar = Frame(right_frame, bg="white")
+log_bar.pack(padx=5, pady=5, fill="both")
+
+log_label = Label(log_bar, text="Log", font=("Arial", 12, "bold"), bg="white", fg="black", anchor="w", wraplength=1500)
+log_label.pack(padx=30, pady=5, side=LEFT)
 # Function to open the file dialog and update the image
 def open_file_dialog():
     global thop_file_path
@@ -58,15 +63,19 @@ def open_file_dialog():
         main_label.configure(image=new_image)
         main_label.image = new_image
 
+        log_label_info = get_instance_info(thop_file_path)
+        log_label_text = "\t-\t".join(["{}: {}".format(key, log_label_info[key]) for key in log_label_info])
+        log_label.config(text=log_label_text)
+
 # Function to run the test instance and update the image with the solution
 def run_test_instance():
     global thop_file_path, thief_packing_plan
     if thop_file_path:
-        thief_route_solution, thief_packing_plan = run_acoplusplus(thop_file_path)
+        thief_route_solution, thief_packing_plan, log_stats = run_acoplusplus(thop_file_path)
         new_image = construct_map(thop_file_path, "output.png", thief_route_solution=thief_route_solution, show_solution=True)
         main_label.configure(image=new_image)
         main_label.image = new_image
-
+        log_label.config(text="Best Profit: {}\tFound at Time: {}\tFound at iteration: {}".format(log_stats[1], log_stats[3], log_stats[2]))
         for widget in packing_plan_bar.winfo_children():
             widget.destroy()        
         
@@ -131,7 +140,7 @@ run_instance_btn.pack()
 # Label for the packing plan
 Label(bottom_left_frame, text="Packing Plan").pack(padx=5, pady=5)
 
-sf = ScrolledFrame(bottom_left_frame, width=200, height=800, scrollbars="vertical")
+sf = ScrolledFrame(bottom_left_frame, width=200, height=900, scrollbars="vertical")
 sf.pack( expand=1, fill="both", padx=5, pady=5)
 
 sf.bind_arrow_keys(bottom_left_frame)

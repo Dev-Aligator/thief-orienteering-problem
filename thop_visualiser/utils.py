@@ -50,6 +50,21 @@ def load_items_in_cities_data(file_path, clean_flag=False, items_in_plan=None):
         city_items[city].append({'index': index, 'profit': profit, 'weight': weight})
     return city_items
 
+def get_instance_info(file_path):
+    instance_info = {}
+    featured_info = ['DIMENSION', 'NUMBER OF ITEMS', 'CAPACITY', 'MIN SPEED', 'MAX SPEED', 'EDGE_WEIGHT_TYPE']
+    featured_info_search_idx = 0
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            if featured_info[featured_info_search_idx] in line:
+                instance_info[featured_info[featured_info_search_idx]] = line.strip().split()[-1]
+                featured_info_search_idx += 1
+
+                if featured_info_search_idx == len(featured_info):
+                    break
+    return instance_info
+
 def get_proper_fig_size(n_cities):
     if n_cities < 60:
         return (5, 5)
@@ -65,3 +80,4 @@ def rgbtohex(rgb_color):
 
 def extract_file_name(file_path):
     return file_path.split('/')[-1]
+
