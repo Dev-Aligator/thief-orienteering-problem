@@ -67,6 +67,8 @@ def open_file_dialog():
         log_label_text = "\t-\t".join(["{}: {}".format(key, log_label_info[key]) for key in log_label_info])
         log_label.config(text=log_label_text)
 
+        for widget in packing_plan_bar.winfo_children():
+            widget.destroy()  
 # Function to run the test instance and update the image with the solution
 def run_test_instance():
     global thop_file_path, thief_packing_plan
@@ -87,18 +89,26 @@ def run_test_instance():
                 continue
             city_bg_color = rgbtohex(CITIES_COLOR[city])
             row_bg_color = "white" if index % 2 == 0 else "lightgrey"
+
             items_in_city = [str(item['index']) for item in items_in_cur_city]
-            new_city_items_frame = Frame(packing_plan_bar, width=200, height=100, bg=row_bg_color)
-            new_city_items_frame.pack(padx=5, pady=0)
-            new_packing_plan_label = Label(new_city_items_frame, text=items_in_city, width=26, anchor="w", wraplength=200, bg=row_bg_color)
-            new_packing_plan_label.pack(side=LEFT, padx=0, pady=5)
+            new_city_items_frame = Frame(packing_plan_bar, height=100, bg=row_bg_color)
+            new_city_items_frame.pack(padx=5, pady=0, expand=False, fill="x", side=TOP)
+
             # Main city label
             new_city_plan_label = Label(new_city_items_frame, text='', wraplength=200, bg=city_bg_color, width=6, height=2)
-            new_city_plan_label.pack(side=RIGHT, padx=5, pady=5)
+            new_city_plan_label.pack(side=LEFT, padx=10, pady=5)
             
             # Sub-label for the number
             sub_label = Label(new_city_plan_label, text=str(city), bg="white", width=5, height=1)
             sub_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+
+            new_packing_plan_label = Label(new_city_items_frame, text="", width=400, anchor="w", wraplength=200, bg=row_bg_color)
+            for item in items_in_city:
+                new_item_label = Label(new_packing_plan_label, text=str(item), anchor="center", width=4, wraplength=200, bg="#b8b816")
+                new_item_label.pack(side=LEFT, padx=5)
+            new_packing_plan_label.pack(side=LEFT, padx=0, pady=5, fill="x", expand=True)
+
 # Create a toolbar in the top left frame
 tool_bar = Frame(top_left_frame, width=200, height=int(left_frame.winfo_height() * 0.8))
 tool_bar.pack(padx=5, pady=5)
@@ -140,11 +150,11 @@ run_instance_btn.pack()
 # Label for the packing plan
 Label(bottom_left_frame, text="Packing Plan").pack(padx=5, pady=5)
 
-sf = ScrolledFrame(bottom_left_frame, width=200, height=900, scrollbars="vertical")
+sf = ScrolledFrame(bottom_left_frame, width=200, height=900, use_ttk=True)
 sf.pack( expand=1, fill="both", padx=5, pady=5)
 
-sf.bind_arrow_keys(bottom_left_frame)
-sf.bind_scroll_wheel(bottom_left_frame)
+sf.bind_arrow_keys(root)
+sf.bind_scroll_wheel(root)
 packing_plan_bar = sf.display_widget(Frame)
 
 # Start the Tkinter main loop
