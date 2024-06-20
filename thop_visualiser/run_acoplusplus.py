@@ -33,12 +33,16 @@ def search_for_solution(thop_file_path):
     thop_file_name = extract_file_name(thop_file_path)
     instance_name = thop_file_name.split(".")[0]
     instance_type = instance_name.split("_")[0] + "-thop"
-    search_dir = os.getcwd() + "/../acoplusplus_thop/solutions/aco++/" + instance_type
-    for file in glob.glob(search_dir + "/*.thop.sol"):
+    base_dir = os.path.join(os.getcwd(), "..", "acoplusplus_thop", "solutions", "aco++", instance_type)
+
+    # Normalize the path for the current operating system
+    search_dir = os.path.normpath(base_dir)
+    file_pattern = os.path.join(search_dir, "*.thop.sol")
+    for file in glob.glob(file_pattern):
         solution_instance_filename = extract_file_name(file)
         solution_instance_name_split = solution_instance_filename.split("_")
         solution_instance_name = "_".join(solution_instance_name_split[0:5])
-    
+        print(solution_instance_name + "-----" + instance_name)
         if instance_name == solution_instance_name:
             return True, file
     return False, "output.thop.sol"
@@ -47,8 +51,12 @@ def search_for_log(thop_file_path):
     thop_file_name = extract_file_name(thop_file_path)
     instance_name = thop_file_name.split(".")[0]
     instance_type = instance_name.split("_")[0] + "-thop"
-    search_dir = os.getcwd() + "/../acoplusplus_thop/solutions/aco++/" + instance_type
-    for file in glob.glob(search_dir + "/*.thop.sol.log"):
+    base_dir = os.path.join(os.getcwd(), "..", "acoplusplus_thop", "solutions", "aco++", instance_type)
+
+    # Normalize the path for the current operating system
+    search_dir = os.path.normpath(base_dir)
+    file_pattern = os.path.join(search_dir, "*.thop.sol.log")
+    for file in glob.glob(file_pattern):
         log_instance_filename = extract_file_name(file)
         log_instance_name_split = log_instance_filename.split("_")
         log_instance_name = "_".join(log_instance_name_split[0:5])
@@ -58,4 +66,3 @@ def search_for_log(thop_file_path):
     return "output.thop.sol.log"
 
 
-# run_acoplusplus("/home/aligator/Repositories/Thief-Orienteering-Problem-ThOP/acoplusplus_thop/instances/a280-thop/a280_01_bsc_01_01.thop")

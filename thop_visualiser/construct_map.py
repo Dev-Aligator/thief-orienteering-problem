@@ -47,10 +47,12 @@ def construct_map(thop_input_file_path, output_file, thief_route_solution=None, 
     image = (Image.open(output_file))
     resized_image= image.resize((1500, 1000), Image.LANCZOS)
     new_image= ImageTk.PhotoImage(resized_image)
-    
-    os.system('pkill feh')
 
-    if len(x) > 100 and show_solution:
-        os.system('feh ' + output_file + ' &')
+    if os.name == 'nt':       # Check if the OS is Windows
+        print("You should use Linux to run this program in order to run new test intances or zoom on large intances!!")
+    else:
+        os.system('pkill feh')
+        if len(x) > 100 and show_solution:
+            os.system('feh ' + output_file + ' &')
     return new_image
 

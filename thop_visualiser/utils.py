@@ -1,4 +1,5 @@
 import numpy as np
+import os
 
 def get_random_color():
     return list(np.random.choice(range(256), size=3) / 256)
@@ -79,5 +80,5 @@ def rgbtohex(rgb_color):
     return f'#{r:02x}{g:02x}{b:02x}'
 
 def extract_file_name(file_path):
-    return file_path.split('/')[-1]
+    return os.path.basename(file_path)
 
