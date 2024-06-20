@@ -1,5 +1,7 @@
 # ThOP - Experiments & Visualization
-![Thief Orienteering Problem Visualization Tool](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjVwanRka25zbGU3ZDB3cDVveGF1c2lpemx6bGpkcXR0dDh2encyNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aKmpdeSkymMtILVDCK/giphy.gif 'Preview Gif 😀 ...I love you')
+<div style="text-align: center;">
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjVwanRka25zbGU3ZDB3cDVveGF1c2lpemx6bGpkcXR0dDh2encyNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aKmpdeSkymMtILVDCK/giphy.gif" alt="Thief Orienteering Problem Visualization Tool">
+</div>
 <p align="center"> 
     <a aria-label="Thopvis is free to use" href="/LICENSE" target="_blank">
         <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-success.svg?style=flat-square&color=33CC12" target="_blank" />
