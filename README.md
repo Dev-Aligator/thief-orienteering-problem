@@ -1,5 +1,5 @@
 # ThOP - Experiments & Visualization
-<div style="text-align: center;">
+<div align="center">
     <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjVwanRka25zbGU3ZDB3cDVveGF1c2lpemx6bGpkcXR0dDh2encyNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aKmpdeSkymMtILVDCK/giphy.gif" alt="Thief Orienteering Problem Visualization Tool">
 </div>
 <p align="center"> 
