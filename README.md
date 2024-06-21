@@ -9,7 +9,8 @@
 </p>
 
 ---
-A tool that enables users to view details and execute any thop instances.
+A tool that allows users to visualize and run different thop instances to observe the thief's route and packing plan.
+
 ## Disclaimer
 The algorithms and experimental methods used in this repository are derived from [acoplusplus](https://github.com/jonatasbcchagas/acoplusplus_thop) and the paper [Efficiently solving the thief orienteering problem with a max-min ant colony optimization algorithm](https://link.springer.com/article/10.1007/s11590-021-01824-y).
 
@@ -31,6 +32,27 @@ python thopvis.py
 ```
 
 **Note**: This tool was previously designed to run solely on Linux, but it can still load and run the existing `eil51-thop` instances on Windows.
+
+## Comparison of ThOP solution approaches
+Because all algorithms are randomized, we have performed 5 independent runs
+per instance. Each run has been executed with the parameter values with the best mean
+performance. Raw results and solutions found, are also available at `acoplusplus_thop/solutions`.
+
+We plot for every instance and algorithm the approximation ratio as a heatmap
+in order to highlight larger differences.
+<p align="middle">
+<img src="showcase/ILS_heatmap.png" width="425"/> <img src="showcase/ACO_heatmap.png" width="425"/> <img src="showcase/ACO++_heatmap.png" width="425"/>
+</p>
+
+ Moreover, we use diamond symbols to highlight
+the instances for which each algorithm has found the best known solutions.
+| i↓  j→ | ILS   | ACO   | ACO++ |
+|-------|-------|-------|-------|
+| ILS   | -     | 2.55% | 1.16% |
+| ACO   | 98.38%| -     | 4.86% |
+| ACO++ | 99.77%| 96.99%| -     |
+
+Percentage of the number of instances in which algorithm *i* found better or equal quality solutions than algorithm *j*
 
 ---
 <p align="center">Dev-Aligator</p>
