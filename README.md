@@ -12,6 +12,8 @@
 A tool that allows users to visualize and run different thop instances to observe the thief's route and packing plan.
 
 ## Disclaimer
+This is **strictly** for educational purposes only and serves as a final project for my CS106 - Artificial Intelligence course at UIT.
+
 The algorithms and experimental methods used in this repository are derived from [acoplusplus](https://github.com/jonatasbcchagas/acoplusplus_thop) and the paper [Efficiently solving the thief orienteering problem with a max-min ant colony optimization algorithm](https://link.springer.com/article/10.1007/s11590-021-01824-y).
 
 I am in no way associated with Jonatas B. C. Chagas and Markus Wagner.
@@ -41,7 +43,7 @@ performance. Raw results and solutions found, are also available at `acoplusplus
 We plot for every instance and algorithm the approximation ratio as a heatmap
 in order to highlight larger differences.
 <p align="middle">
-<img src="showcase/ILS_heatmap.png" width="425"/> <img src="showcase/ACO_heatmap.png" width="425"/> <img src="showcase/ACO++_heatmap.png" width="425"/>
+<img src="showcase/ILS_heatmap.png" width="325"/> <img src="showcase/ACO_heatmap.png" width="325"/> <img src="showcase/ACO++_heatmap.png" width="325"/>
 </p>
 
  Moreover, we use diamond symbols to highlight
@@ -53,6 +55,11 @@ the instances for which each algorithm has found the best known solutions.
 | ACO++ | 99.77%| 96.99%| -     |
 
 Percentage of the number of instances in which algorithm *i* found better or equal quality solutions than algorithm *j*
+
+**Note**: The notebook source code for creating these heatmaps and table can be found in `acoplusplus/results_analysis.ipynb`.
+
+## Additional Resources
+You can access additional resources, including presentation slides and a demo video with voiceover (in Vietnamese), in the [CS106_Group9 Drive](https://drive.google.com/drive/folders/1_g84q3nKzPJuTxqAiIHXzZoJVrh4dLOk?usp=drive_link).
 
 ---
 <p align="center">Dev-Aligator</p>
